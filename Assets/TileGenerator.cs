@@ -10,6 +10,7 @@ public class TileGenerator : MonoBehaviour
     public int maxLength;
     public int numberOfPlatforms;
     public List<GameObject> tiles;
+    public InstanceManager manager;
 
 
     private void Awake()
@@ -25,7 +26,8 @@ public class TileGenerator : MonoBehaviour
         {
             GameObject curr = Instantiate(tilePrefab, transform);
             curr.transform.localPosition = new Vector3(Random.Range(-mapSize, mapSize), Random.Range(-mapSize + 10, mapSize - 10));
-            curr.GetComponent<SpriteRenderer>().size = new Vector2(Random.Range(minLength, maxLength), 1);
+            curr.GetComponent<SpriteRenderer>().size = new Vector2(Random.Range(minLength, Mathf.RoundToInt(maxLength/2)) * 2 + 1, 1);
+            curr.GetComponent<FloorCollision>().manager = manager;
             tiles.Add(curr);
         }
     }

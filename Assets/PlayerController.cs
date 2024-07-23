@@ -10,10 +10,14 @@ public class PlayerController : MonoBehaviour
 
     public GameObject indicator;
 
-    public float horizontalAxis;
+    public int horizontalAxis;
     public bool jumpPressed;
 
     float jumpCooldown = 2;
+
+    public InstanceManager manager;
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -24,12 +28,19 @@ public class PlayerController : MonoBehaviour
     void FixedUpdate()
     {
         //To Be Removed
-        horizontalAxis = Input.GetAxis("Horizontal");
+        horizontalAxis = Mathf.RoundToInt(Input.GetAxis("Horizontal"));
         jumpPressed = Input.GetKey(KeyCode.Space);
         //
-        Vector2 forceVector = new Vector2(horizontalAxis * force, 0);
-        bool ableToJump = Physics2D.Raycast(transform.position - new Vector3(-1.4f, 0), Vector2.down, distance: 1f, layerMask: mask).transform != null || Physics2D.Raycast(transform.position - new Vector3(1.4f, 0), Vector2.down, distance: 1f, layerMask: mask).transform != null;
-        bool notTopped = Physics2D.Raycast(transform.position, Vector2.up, distance: 1f, layerMask: mask).transform == null;
+        Vector2 forceVector = Vector2.zero;
+        bool ableToJump = Raycast(Vector2.down);
+        bool notTopped = !Raycast(Vector2.up);
+        bool ableToStrafe = !Raycast(new Vector2(horizontalAxis, 0));
+
+        print(ableToJump + "   " + notTopped + "   " + ableToStrafe);
+        if (ableToStrafe)
+        {
+            forceVector.x = horizontalAxis;
+        }    
         if (jumpPressed && ableToJump && notTopped)
         {
             forceVector.y = jumpForce;
@@ -42,9 +53,25 @@ public class PlayerController : MonoBehaviour
         else if (!ableToJump && jumpCooldown >= 1)
         {
             forceVector.y = -jumpForce;
-        }    
+        }
 
         transform.Translate(forceVector);
         jumpCooldown += 0.05f;
+    }
+
+    bool Raycast(Vector2 direction)
+    {
+        int indexx = Mathf.RoundToInt(transform.position.x + direction.x) + 50;
+        int indexy = Mathf.RoundToInt(transform.position.y + direction.y) + 50;
+        print(indexx + "    " + indexy);
+        try
+        {
+            return !manager.collisionMatrix[indexx, indexy];
+        }
+        catch
+        {
+            return true;
+        }
+        
     }
 }
