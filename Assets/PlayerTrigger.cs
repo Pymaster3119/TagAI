@@ -5,16 +5,20 @@ using UnityEngine;
 public class PlayerTrigger : MonoBehaviour
 {
     public InstanceManager manager;
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.transform != transform.parent && collision.transform.name.Contains("Player"))
-        {
-            manager.playerTagged();
-        }
-    }
-
+    public GameObject otherPlayer;
+    public bool tagged = false;
     private void Update()
     {
+        print((transform.position - otherPlayer.transform.position).magnitude);
+        if (!tagged&&(transform.position - otherPlayer.transform.position).magnitude < 1.1f)
+        {
+            manager.playerTagged();
+            tagged = true;
+        }
+        else if ((transform.position - otherPlayer.transform.position).magnitude > 1.1f)
+        {
+            tagged = false;
+        }
         transform.localPosition = Vector3.zero;
     }
 }
