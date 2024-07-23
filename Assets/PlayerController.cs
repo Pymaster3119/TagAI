@@ -31,12 +31,12 @@ public class PlayerController : MonoBehaviour
         horizontalAxis = Mathf.RoundToInt(Input.GetAxis("Horizontal"));
         jumpPressed = Input.GetKey(KeyCode.Space);
         //
+
         Vector2 forceVector = Vector2.zero;
         bool ableToJump = Raycast(Vector2.down);
         bool notTopped = !Raycast(Vector2.up);
         bool ableToStrafe = !Raycast(new Vector2(horizontalAxis, 0));
 
-        print(ableToJump + "   " + notTopped + "   " + ableToStrafe);
         if (ableToStrafe)
         {
             forceVector.x = horizontalAxis;
@@ -61,12 +61,12 @@ public class PlayerController : MonoBehaviour
 
     bool Raycast(Vector2 direction)
     {
-        int indexx = Mathf.RoundToInt(transform.position.x + direction.x) + 50;
-        int indexy = Mathf.RoundToInt(transform.position.y + direction.y) + 50;
-        print(indexx + "    " + indexy);
+        Vector3 pos = transform.position;
+        int indexx = Mathf.RoundToInt(pos.x + direction.x) + 50;
+        int indexy = Mathf.RoundToInt(pos.y + direction.y) + 50;
         try
         {
-            return !manager.collisionMatrix[indexx, indexy];
+            return manager.collisionMatrix[indexx, indexy];
         }
         catch
         {

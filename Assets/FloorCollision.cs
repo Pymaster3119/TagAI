@@ -8,23 +8,19 @@ public class FloorCollision : MonoBehaviour
     public SpriteRenderer renderer;
     void Start()
     {
-        int leftbound = Mathf.RoundToInt(transform.position.x - (renderer.size.x / 2 + 0.5f));
+        int leftbound = Mathf.RoundToInt(transform.position.x - (renderer.size.x / 2 + 0.5f) + 1);
         int rightbound = Mathf.RoundToInt(leftbound + renderer.size.x - 1);
 
-        int upbound = Mathf.RoundToInt(transform.position.x - (renderer.size.x / 2 + 0.5f));
-        int downbound = Mathf.RoundToInt(upbound + renderer.size.x - 1);
 
         for (int x = leftbound + 50; x <= rightbound + 50; x++)
         {
-            if (x >= 0 && x <= 100)
+            try
+            { 
+                manager.collisionMatrix[x, Mathf.RoundToInt(transform.position.y) + 50] = true;
+            }
+            catch
             {
-                for (int y = downbound + 50; y <= upbound + 50; y++)
-                {
-                    if (y >= 0 && y <= 100)
-                    {
-                        manager.collisionMatrix[x, y] = true;
-                    }
-                }
+
             }
         }
     }
