@@ -755,7 +755,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rb: {fileID: 0}
   force: 10
-  jumpForce: 100
+  jumpForce: 1000
   mask:
     serializedVersion: 2
     m_Bits: 55
@@ -827,7 +827,7 @@ GameObject:
   - component: {fileID: 1262831774}
   - component: {fileID: 1262831776}
   - component: {fileID: 1262831775}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Player2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -847,8 +847,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 0}
-  force: 10
-  jumpForce: 100
+  force: 1
+  jumpForce: 1
   mask:
     serializedVersion: 2
     m_Bits: 55
@@ -863,7 +863,7 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1262831773}
-  m_BodyType: 0
+  m_BodyType: 2
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
@@ -1250,7 +1250,7 @@ GameObject:
   - component: {fileID: 1847311579}
   - component: {fileID: 1847311578}
   - component: {fileID: 1847311581}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Static Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}

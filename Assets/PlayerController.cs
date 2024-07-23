@@ -12,6 +12,8 @@ public class PlayerController : MonoBehaviour
 
     public float horizontalAxis;
     public bool jumpPressed;
+
+    float jumpCooldown = 2;
     // Start is called before the first frame update
     void Start()
     {
@@ -26,12 +28,23 @@ public class PlayerController : MonoBehaviour
         jumpPressed = Input.GetKey(KeyCode.Space);
         //
         Vector2 forceVector = new Vector2(horizontalAxis * force, 0);
-        bool ableToJump = Physics2D.Raycast(transform.position - new Vector3(-1.4f, 0), Vector2.down, distance: 1.6f, layerMask: mask).transform != null || Physics2D.Raycast(transform.position - new Vector3(1.4f, 0), Vector2.down, distance: 1.6f, layerMask: mask).transform != null;
-        if (jumpPressed && ableToJump)
+        bool ableToJump = Physics2D.Raycast(transform.position - new Vector3(-1.4f, 0), Vector2.down, distance: 1f, layerMask: mask).transform != null || Physics2D.Raycast(transform.position - new Vector3(1.4f, 0), Vector2.down, distance: 1f, layerMask: mask).transform != null;
+        bool notTopped = Physics2D.Raycast(transform.position, Vector2.up, distance: 1f, layerMask: mask).transform == null;
+        if (jumpPressed && ableToJump && notTopped)
+        {
+            forceVector.y = jumpForce;
+            jumpCooldown = 0;
+        }
+        else if (jumpCooldown <= 1 && notTopped)
         {
             forceVector.y = jumpForce;
         }
+        else if (!ableToJump && jumpCooldown >= 1)
+        {
+            forceVector.y = -jumpForce;
+        }    
 
-        rb.AddForce(forceVector);
+        transform.Translate(forceVector);
+        jumpCooldown += 0.05f;
     }
 }
