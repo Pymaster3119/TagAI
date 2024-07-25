@@ -9,7 +9,6 @@ public class PlayerTrigger : MonoBehaviour
     public bool tagged = false;
     private void Update()
     {
-        print((transform.position - otherPlayer.transform.position).magnitude);
         if (!tagged&&(transform.position - otherPlayer.transform.position).magnitude < 1.1f)
         {
             manager.playerTagged();
@@ -19,6 +18,5 @@ public class PlayerTrigger : MonoBehaviour
         {
             tagged = false;
         }
-        transform.localPosition = Vector3.zero;
     }
 }

@@ -8,7 +8,7 @@ public class FloorCollision : MonoBehaviour
     public SpriteRenderer renderer;
     void Start()
     {
-        int leftbound = Mathf.RoundToInt(transform.position.x - (renderer.size.x / 2 + 0.5f) + 1);
+        int leftbound = Mathf.RoundToInt(transform.localPosition.x - (renderer.size.x / 2 + 0.5f) + 1);
         int rightbound = Mathf.RoundToInt(leftbound + renderer.size.x - 1);
 
 
@@ -16,11 +16,11 @@ public class FloorCollision : MonoBehaviour
         {
             try
             { 
-                manager.collisionMatrix[x, Mathf.RoundToInt(transform.position.y) + 50] = true;
+                manager.collisionMatrix[x, Mathf.RoundToInt(transform.localPosition.y) + 50] = true;
             }
             catch
             {
-
+                print("Exception " + leftbound + rightbound + x);
             }
         }
     }

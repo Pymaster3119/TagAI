@@ -30,8 +30,8 @@ public class InstanceManager : MonoBehaviour
 
     public void Start()
     {
-        //player1.indicator.SetActive(playerOneTagged);
-        //player2.indicator.SetActive(!playerOneTagged);
+        player1.indicator.SetActive(playerOneTagged);
+        player2.indicator.SetActive(!playerOneTagged);
     }
     public void playerTagged()
     {
@@ -40,8 +40,8 @@ public class InstanceManager : MonoBehaviour
             playerOneTagged = !playerOneTagged;
         }
         alreadyTagged = !alreadyTagged;
-        //player1.indicator.SetActive(playerOneTagged);
-        //player2.indicator.SetActive(!playerOneTagged);
+        player1.indicator.SetActive(playerOneTagged);
+        player2.indicator.SetActive(!playerOneTagged);
     }
 
     private void OnDestroy()
@@ -56,8 +56,8 @@ public class InstanceManager : MonoBehaviour
         player2.transform.localPosition = new Vector3(15, 0, 0);
         playerOneTagged = false;
         alreadyTagged = false;
-        //player1.indicator.SetActive(playerOneTagged);
-        //player2.indicator.SetActive(!playerOneTagged);
+        player1.indicator.SetActive(playerOneTagged);
+        player2.indicator.SetActive(!playerOneTagged);
         timer = 0;
     }
 

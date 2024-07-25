@@ -27,11 +27,16 @@ public class PlayerController : MonoBehaviour
         jumpPressed = Input.GetKey(KeyCode.Space);
         //
 
+        
+
         Vector2 forceVector = Vector2.zero;
         bool ableToJump = Raycast(Vector2.down);
         bool notTopped = !Raycast(Vector2.up);
         bool ableToStrafe = !Raycast(new Vector2(horizontalAxis, 0));
 
+        print("able to jump" + ableToJump);
+        print("not topped" + notTopped);
+        print("able to strafe" + ableToStrafe);
         if (ableToStrafe)
         {
             forceVector.x = horizontalAxis;
@@ -50,13 +55,14 @@ public class PlayerController : MonoBehaviour
             forceVector.y = -jumpForce;
         }
 
+        print("force vector" + forceVector);
         transform.Translate(forceVector);
         jumpCooldown += 0.05f;
     }
 
     bool Raycast(Vector2 direction)
     {
-        Vector3 pos = transform.position;
+        Vector3 pos = transform.localPosition;
         int indexx = Mathf.RoundToInt(pos.x + direction.x) + 50;
         int indexy = Mathf.RoundToInt(pos.y + direction.y) + 50;
         try
