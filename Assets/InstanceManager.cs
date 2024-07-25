@@ -68,8 +68,7 @@ public class InstanceManager : MonoBehaviour
         timeWithPlayer2 += !playerOneTagged ? 0.02f : 0.0f;
         if (timer >= maxTime)
         {
-            print("End timer!");
-            timer = 0;
+            timer = 0.0f;
             timeWithPlayer2 = 0;
             StartScene();
 

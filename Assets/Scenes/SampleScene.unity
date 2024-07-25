@@ -152,8 +152,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60ffc1a4f89c14b5fa44ff7211273f37, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  instanceWidth: 1
-  instanceHeight: 1
+  instanceWidth: 2
+  instanceHeight: 2
   instance: {fileID: 3168509622917782181, guid: 4e7a350f221b540b0ad20d87a3da34d3, type: 3}
 --- !u!4 &365244832
 Transform:

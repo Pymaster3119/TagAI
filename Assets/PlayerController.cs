@@ -17,7 +17,10 @@ public class PlayerController : MonoBehaviour
 
     public InstanceManager manager;
 
-
+    private void Start()
+    {
+        
+    }
 
     // Update is called once per frame
     void FixedUpdate()
@@ -27,16 +30,10 @@ public class PlayerController : MonoBehaviour
         jumpPressed = Input.GetKey(KeyCode.Space);
         //
 
-        
-
         Vector2 forceVector = Vector2.zero;
         bool ableToJump = Raycast(Vector2.down);
         bool notTopped = !Raycast(Vector2.up);
         bool ableToStrafe = !Raycast(new Vector2(horizontalAxis, 0));
-
-        print("able to jump" + ableToJump);
-        print("not topped" + notTopped);
-        print("able to strafe" + ableToStrafe);
         if (ableToStrafe)
         {
             forceVector.x = horizontalAxis;
@@ -67,7 +64,7 @@ public class PlayerController : MonoBehaviour
         int indexy = Mathf.RoundToInt(pos.y + direction.y) + 50;
         try
         {
-            return manager.collisionMatrix[indexx, indexy];
+            return Mathf.Abs(indexx - 50) == 50 ||manager.collisionMatrix[indexx, indexy];
         }
         catch
         {

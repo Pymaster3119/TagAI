@@ -20,7 +20,7 @@ public class FloorCollision : MonoBehaviour
             }
             catch
             {
-                print("Exception " + leftbound + rightbound + x);
+                
             }
         }
     }
