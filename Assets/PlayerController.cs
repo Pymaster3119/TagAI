@@ -25,10 +25,6 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        //To Be Removed
-        horizontalAxis = Mathf.RoundToInt(Input.GetAxis("Horizontal"));
-        jumpPressed = Input.GetKey(KeyCode.Space);
-        //
 
         Vector2 forceVector = Vector2.zero;
         bool ableToJump = Raycast(Vector2.down);

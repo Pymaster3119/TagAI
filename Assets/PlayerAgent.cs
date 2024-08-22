@@ -8,6 +8,13 @@ public class PlayerAgent : Agent
 {
     public InstanceManager manager;
     public PlayerController controller;
+    public int timestep;
+    public TextMesh rewardmesh;
+
+    public override void OnEpisodeBegin()
+    {
+        rewardmesh.text = "Player reward: 0";
+    }
     public override void CollectObservations(VectorSensor sensor)
     {
         RenderTexture.active = manager.cameraTexture;
@@ -30,10 +37,25 @@ public class PlayerAgent : Agent
     }
     public override void Heuristic(in ActionBuffers actionsOut)
     {
+        var discreteActions = actionsOut.DiscreteActions;
+        discreteActions[0] = Mathf.RoundToInt(Input.GetAxis("Horizontal"));
+        discreteActions[1] = Input.GetKey(KeyCode.Space)? 1 : 0;
         
     }
     public override void OnActionReceived(ActionBuffers actions)
     {
-        
+        var discreteActions = actions.DiscreteActions;
+        controller.horizontalAxis = discreteActions[0];
+        controller.jumpPressed = discreteActions[1] == 0;
+
+        //Small reward if it is tagged that scales towards the end of the round
+        if (manager.playerOneTagged == (manager.player1agent==this))
+        {
+            AddReward(-(int)Math.Pow(2, timestep));
+            timestep++;
+        }
+
+        //Update display
+        rewardmesh.text = "Player reward: " + GetCumulativeReward();
     }
 }
