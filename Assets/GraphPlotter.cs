@@ -1,3 +1,5 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -8,8 +10,14 @@ public class GraphPlotter : MonoBehaviour
     public Color lineColor = Color.black;
     public float circleSize = 5f;
     public float[] values;
-    private void Awake()
+
+    public list<GameObject> objs;
+    private void FixedUpdate()
     {
+        foreach (GameObject i in objs)
+        {
+            Destroy(i);
+        }
         float graphWidth = graphContainer.rect.width;
         float graphHeight = graphContainer.rect.height;
         print(graphWidth);
@@ -39,7 +47,7 @@ public class GraphPlotter : MonoBehaviour
         lineObj.transform.SetParent(graphContainer, false);
         Image lineImage = lineObj.GetComponent<Image>();
         lineImage.color = lineColor;
-        
+        objs.Add(lineObj);
         RectTransform rectTransform = lineObj.GetComponent<RectTransform>();
         Vector2 direction = (pointB - pointA).normalized;
         float distance = Vector2.Distance(pointA, pointB);

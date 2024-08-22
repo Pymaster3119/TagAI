@@ -568,7 +568,7 @@ MonoBehaviour:
   player1agent: {fileID: 0}
   player2agent: {fileID: 0}
   tileGenerator: {fileID: 3168509621862185283}
-  maxTime: 100
+  maxTime: 30
   timer: 0
   timerMesh: {fileID: 3168509622673501486}
   index: 0

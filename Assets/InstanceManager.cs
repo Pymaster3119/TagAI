@@ -71,6 +71,9 @@ public class InstanceManager : MonoBehaviour
         {
             timer = 0.0f;
             timeWithPlayer2 = 0;
+            player1agent.EndEpisode();
+            player2agent.EndEpisode();
+            GraphParent.timewithplayer2.Add(timeWithPlayer2);
             StartScene();
 
         }
