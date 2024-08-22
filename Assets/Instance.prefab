@@ -269,8 +269,10 @@ MonoBehaviour:
     maxStep: 0
   hasUpgradedFromAgentParameters: 1
   MaxStep: 0
-  manager: {fileID: 0}
-  controller: {fileID: 0}
+  manager: {fileID: 3168509622917782179}
+  controller: {fileID: 3168509621107754024}
+  timestep: 0
+  rewardmesh: {fileID: 2292737932930487215}
 --- !u!1 &3168509621862185282
 GameObject:
   m_ObjectHideFlags: 0
@@ -743,8 +745,10 @@ MonoBehaviour:
     maxStep: 0
   hasUpgradedFromAgentParameters: 1
   MaxStep: 0
-  manager: {fileID: 0}
-  controller: {fileID: 0}
+  manager: {fileID: 3168509622917782179}
+  controller: {fileID: 3168509623187684417}
+  timestep: 0
+  rewardmesh: {fileID: 361667216095638158}
 --- !u!1 &4817745170567656381
 GameObject:
   m_ObjectHideFlags: 0

@@ -51,7 +51,7 @@ public class PlayerAgent : Agent
         //Small reward if it is tagged that scales towards the end of the round
         if (manager.playerOneTagged == (manager.player1agent==this))
         {
-            AddReward(-(int)Math.Pow(2, timestep));
+            AddReward(-(int)Mathf.Pow(2, timestep));
             timestep++;
         }
 
