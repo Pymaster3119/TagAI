@@ -9,6 +9,7 @@ public class InstanceManager : MonoBehaviour
     public RenderTexture cameraTexture;
     public Camera aiCamera;
     public PlayerController player1, player2;
+    public PlayerAgent player1agent, player2agent;
     public TileGenerator tileGenerator;
 
     public int maxTime;
