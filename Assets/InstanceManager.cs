@@ -69,13 +69,14 @@ public class InstanceManager : MonoBehaviour
         timeWithPlayer2 += !playerOneTagged ? 0.02f : 0.0f;
         if (timer >= maxTime)
         {
+            GraphParent.playerrewards.add(player1agent.GetCumulativeReward());
+            GraphParent.playerrewards.add(player2agent.GetCumulativeReward());
             timer = 0.0f;
             timeWithPlayer2 = 0;
             player1agent.EndEpisode();
             player2agent.EndEpisode();
             GraphParent.timewithplayer2.Add(timeWithPlayer2);
             StartScene();
-
         }
     }
 }

@@ -27,9 +27,14 @@ public class PlayerAgent : Agent
             for (int x = 0; x < manager.cameraTexture.width; x++)
             {
                 Color pixelColor = tempTexture.GetPixel(x, y);
-                sensor.AddObservation(pixelColor.r);
-                sensor.AddObservation(pixelColor.g);
-                sensor.AddObservation(pixelColor.b);
+                float colorDepth = 5;
+                float scale = Mathf.Pow(2, colorDepth) - 1;
+                float r = Mathf.Round(color.r * scale) / scale;
+                float g = Mathf.Round(color.g * scale) / scale;
+                float b = Mathf.Round(color.b * scale) / scale;
+                sensor.AddObservation(r);
+                sensor.AddObservation(g);
+                sensor.AddObservation(b);
             }
         }
         RenderTexture.active = null;
